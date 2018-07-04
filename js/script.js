@@ -415,18 +415,6 @@ $(function() {
       for (var i in tmp) {
         var row = tmp[i];
         var area = new AreaModel();
-        var areas = row[0].split(" ");
-        var group_name = areas.shift();
-        if (!areaGroup.hasOwnProperty(group_name)) {
-            areaGroup[group_name] = new Object();
-            groupOrder.push(group_name);
-        }
-        var group = areaGroup[group_name];
-        for (var j in areas) {
-            var area_name = areas[j];
-            if (area_name == "" || area_name == " ") continue;
-            group[area_name] = area;
-        }
         area.label = row[0];
         area.centerName = row[1];
 
@@ -440,36 +428,44 @@ $(function() {
         }
       }
 
-      // ◇center.csv は読まない！
-      //csvToArray("data/center.csv", function(tmp) {
+      csvToArray("data/center.csv", function(tmp) {
         //ゴミ処理センターのデータを解析します。
         //表示上は現れませんが、
         //金沢などの各処理センターの休止期間分は一週間ずらすという法則性のため
         //例えば第一金曜日のときは、一周ずらしその月だけ第二金曜日にする
-      //  tmp.shift();
-      //  for (var i in tmp) {
-      //    var row = tmp[i];
+        tmp.shift();
+        for (var i in tmp) {
+          var row = tmp[i];
 
-      //    var center = new CenterModel(row);
-      //    center_data.push(center);
-      //  }
+          var center = new CenterModel(row);
+          center_data.push(center);
+        }
         //ゴミ処理センターを対応する各地域に割り当てます。
-      //  for (var i in areaModels) {
-      //    var area = areaModels[i];
-      //    area.setCenter(center_data);
-      //  };
-      //  createSelectBox();
+        for (var i in areaModels) {
+          var area = areaModels[i];
+          area.setCenter(center_data);
+        };
+        //エリアとゴミ処理センターを対応後に、表示のリストを生成する。
+        //ListメニューのHTML作成
+        var selected_name = getSelectedAreaName();
+        var area_select_form = $("#select_area");
+        var select_html = "";
+        select_html += '<option value="-1">地域を選択してください</option>';
+        for (var row_index in areaModels) {
+          var area_name = areaModels[row_index].label;
+          var selected = (selected_name == area_name) ? 'selected="selected"' : "";
+
+          select_html += '<option value="' + row_index + '" ' + selected + " >" + area_name + "</option>";
+        }
 
         //デバッグ用
-      //  if (typeof dump == "function") {
-      //    dump(areaModels);
-      //  }
-      //});
-
-      // ◇ センターは松江市固定
-      area.setCenter();
-      createSelectBox();
-
+        if (typeof dump == "function") {
+          dump(areaModels);
+        }
+        //HTMLへの適応
+        area_select_form.html(select_html);
+        area_select_form.change();
+      });
     });
   }
 
