@@ -380,15 +380,6 @@ $(function() {
     localStorage.setItem("selected_area_name", name);
   }
 
-  function getSelectedGroupName() {
-    var val = localStorage.getItem("selected_group_name");
-    return val ? val : -1;
-  }
-
-  function setSelectedGroupName(name) {
-    localStorage.setItem("selected_group_name", name);
-  }
-
   function csvToArray(filename, cb) {
     $.get(filename, function(csvdata) {
       //CSVのパース作業
