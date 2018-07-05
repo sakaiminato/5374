@@ -54,11 +54,9 @@ a:hover {
 	vertical-align: middle;
 	text-align: center;
 	width: 100%;
-	/* font-size: 22px; ↑80% */
-	font-size: 24px;
+	/* font-size: 22px; ↑80% 下 24→14 */
+	font-size: 14px;
 	font-weight: bold;
-	/* ◇ 0614 */
-	//height: 105px;
 }
 #accordion .accordion-heading .accordion-toggle {
 	/* ◇カラー追加 ↓ */
