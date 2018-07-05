@@ -469,54 +469,6 @@ $(function() {
     });
   }
 
-  function createSelectBox () {
-    var $select_area = $('#select_area');
-    var $select_group = $('#select_group');
-    var selected_group = $select_group.val();
-    $select_area.hide();
-    var options_html = '<option value="-1" selected="selected">橋北・橋南を選択してください</option>';
-    for (var i in groupOrder) {
-      var group = groupOrder[i];
-      options_html += '<option value="' + group + '">' + group + '</option>';
-    }
-    $select_group.change(function (elem) {
-      if ($select_group.val() == -1) {
-        $select_area.val(-1);
-        $select_area.hide();
-        return;
-      }
-      createAreaSelect();
-      $("#accordion").html("");
-      $select_area.show();
-      $select_area.val(-1);
-      $select_area.change();
-    });
-    $select_group.html(options_html);
-    var value = getSelectedGroupName();
-    $select_group.val(value);
-    createAreaSelect();
-    console.log(value);
-    if (value != -1) { $select_area.show(); }
-    $select_area.val(getSelectedAreaName());
-    onChangeSelect(getSelectedGroupName(), getSelectedAreaName());
-  }
-
-  function createAreaSelect() {
-    var $select_area = $('#select_area');
-    var $select_group = $('#select_group');
-    var select_html = "";
-    var selected_name = getSelectedAreaName();
-    select_html += '<option value="-1">地域を選択してください</option>';
-    var group = areaGroup[$select_group.val()];
-    for (var area_name in group) {
-      var selected = (selected_name == area_name) ? 'selected="selected"': '';
-      select_html += '<option value="' + area_name + '" ' + selected + '>' + area_name + '</option>';	    
-    }
-    $select_area.html(select_html);
-    $select_area.insertAfter($select_group);
-    $select_area.val(selected_name);
-  }
-
   function createMenuList(after_action) {
     // 備考データを読み込む
     csvToArray("data/remarks.csv", function(data) {
