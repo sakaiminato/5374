@@ -101,8 +101,9 @@ a:hover {
 }
 #accordion2 .accordion-inner {
 	text-align: center;
-    /* ◇フォントサイズ追加 */
+    /* ◇フォントサイズ追加やめ 
 	font-size: 1.5em;
+    */
 }
 
 /*!
