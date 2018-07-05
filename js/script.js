@@ -637,27 +637,21 @@ $(function() {
     });
   }
 
-  function onChangeSelect(group_name, area_name) {
-    if (group_name == -1) {
-      setSelectedGroupName(-1);
+  function onChangeSelect(row_index) {
+    if (row_index == -1) {
       $("#accordion").html("");
+      setSelectedAreaName("");
       return;
     }
-    if (area_name == -1) {
-      setSelectedAreaName(-1);
-      $("#accordion").html("");
-      return;
-    }
-    setSelectedGroupName(group_name);
-    setSelectedAreaName(area_name);
+    setSelectedAreaName(areaModels[row_index].label);
 
     if ($("#accordion").children().length === 0 && descriptions.length === 0) {
 
       createMenuList(function() {
-        updateData(group_name, area_name);
+        updateData(row_index);
       });
     } else {
-      updateData(group_name, area_name);
+      updateData(row_index);
     }
   }
 
@@ -673,9 +667,8 @@ $(function() {
   }
   //リストが選択されたら
   $("#select_area").change(function(data) {
-    var area_name = $(data.target).val();
-    var group_name = $("#select_group").val();
-    onChangeSelect(group_name, area_name);
+    var row_index = $(data.target).val();
+    onChangeSelect(row_index);
   });
 
   //-----------------------------------
