@@ -439,7 +439,9 @@ $(function() {
       if (accordion_height<130) {accordion_height=130;};
     }
     var styleHTML = "";
-    var accordionHTML = "";
+    // ◇ var accordionHTML = "";
+    var accordionHTML = '   <div class="aname"> <div class="areaname"><p>' + area_name + "</p></div> </div>";
+
     //アコーディオンの分類から対応の計算を行います。
     for (var i in areaModel.trash) {
       var trash = areaModel.trash[i];
@@ -468,7 +470,12 @@ $(function() {
             }
 
             target_tag += '<li style="list-style:none;"><div>' + target.name + "</div>";
-            target_tag += '<div class="note">' + target.notice + "</div></li>";
+            // ◇スペース付加
+            if (target.notice.length > 0) {
+               target_tag += '<p class="note">&ensp;' +  target.notice + "</p>";
+            } else {
+               target_tag += '<p class="note">' + target.notice + "</p>";
+            }
           }
 
           target_tag += "</ul>";
