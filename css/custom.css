@@ -27,8 +27,7 @@ a:hover {
 
 .accordion-inner {
 	padding: 2px 8px;
-	font-size: 10px;
-	//font-size: 16px;
+	font-size: 16px;
 	//font-weight: bold;
 }
 
@@ -54,9 +53,11 @@ a:hover {
 	vertical-align: middle;
 	text-align: center;
 	width: 100%;
-	/* font-size: 22px; ↑80%  */
+	/* font-size: 22px; ↑80% */
 	font-size: 24px;
 	font-weight: bold;
+	/* ◇ 0614 */
+	//height: 105px;
 }
 #accordion .accordion-heading .accordion-toggle {
 	/* ◇カラー追加 ↓ */
@@ -100,9 +101,8 @@ a:hover {
 }
 #accordion2 .accordion-inner {
 	text-align: center;
-    /* ◇フォントサイズ追加やめ 
+    /* ◇フォントサイズ追加 */
 	font-size: 1.5em;
-    */
 }
 
 /*!
