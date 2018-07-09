@@ -27,8 +27,7 @@ a:hover {
 
 .accordion-inner {
 	padding: 2px 8px;
-	// ◇font-size: 16px;
-	font-size: 10px;
+	font-size: 16px;
 	//font-weight: bold;
 }
 
